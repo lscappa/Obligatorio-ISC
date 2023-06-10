@@ -19,13 +19,13 @@ resource "aws_subnet" "services-private-subnet" {
   }
 }
 
-resource "aws_subnet" "ac1-private-subnet-2" {
+resource "aws_subnet" "services-private-subnet-2" {
   vpc_id                  = aws_vpc.services-vpc.id
   cidr_block              = var.private_subnet-2
   availability_zone       = var.vpc_aws_az-2
   map_public_ip_on_launch = "true"
   tags = {
-    Name = "terraform-ac1-private-subnet-2"
+    Name = "services-private-subnet-2"
   }
 }
 
