@@ -40,10 +40,13 @@ diagrama de AWS. El mismo deberá incluir el networking a implementar.
 | [adservice](./Modules/adservice)                         | Java          | Proporciones de anuncios de texto basados ​​en palabras de contexto dadas.                                                                                   |
 | [loadgenerator](./Modules/loadgenerator)                 | Python/Locust | Envía solicitudes continuamente que imitan flujos de compras de usuarios realistas a la interfaz.                                              |
 
-### Datos de la infraestructura (tipo de instancia, bloques CIDRs, Firewalling, etc)
+### Datos de la infraestructura 
+(tipo de instancia, bloques CIDRs, Firewalling, etc)
 
 ### Servicios de AWS usados
-
+1. EC2
+1. VPC
+1. EKS
 ## Referencias
 - Material de Aulas - Implementación de soluciones cloud
 - https://registry.terraform.io/
