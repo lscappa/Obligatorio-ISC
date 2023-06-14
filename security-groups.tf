@@ -1,3 +1,5 @@
+# Configuracion AWS Security Group
+
 resource "aws_security_group" "services-sg" {
   name   = "services-sg"
   vpc_id = aws_vpc.services-vpc.id
