@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: <IMAGE:TAG>
+        image: image_adservice:1.0
         ports:
         - containerPort: 9555
         env:
