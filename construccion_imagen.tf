@@ -1,23 +1,24 @@
 # Creación de imagenes 
 
-# resource "docker_image" "image_adservice" {
-#     name          = "image_adservice:1.0"
-#     build         = {
-#         context    = "./Modules/adservice"
-#         dockerfile = "./Modules/adservice/Dockerfile"
+# resource "docker_image" "image_emailservice" {
+#     name          = "image_emailservice:1.0"
+#     build {
+#         context    = "."
+#         dockerfile  = "./Modules/emailservice/Dockerfile"
 #     }
 # }
 
-# resource "docker_image" "image_adservice" {
-#   name = "image_adservice:1.0"
-#   build {
-#     context = "Modules/adservice"
-#     tag     = ["image_adservice:develop"]
-#     build_arg = {
-#       foo : "image_adservice"
-#     }
-#     label = {
-#       author : "image_adservice"
-#     }
-#   }
-# }
+resource "docker_image" "image_emailservice" {
+  name = "image_emailservice"
+  build {
+    context    = "."
+    dockerfile  = "./Modules/emailservice/Dockerfile"
+    tag     = ["image_emailservice:develop"]
+    build_arg = {
+      foo : "image_emailservice"
+    }
+    label = {
+      author : "image_emailservice"
+    }
+  }
+}
