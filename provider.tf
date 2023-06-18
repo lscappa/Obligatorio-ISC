@@ -16,6 +16,4 @@ terraform {
   }
 }
 provider "docker" {
-    #version = "~> 3.0.2"
-    #host = "unix:///var/run/docker.sock"
 }
