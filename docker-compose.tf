@@ -13,7 +13,7 @@ resource "docker_image" "image_emailservice" {
   build {
     context    = "./Modules/emailservice/"
     dockerfile  = "Dockerfile"
-    tag     = ["image_emailservice:develop"]
+    tag     = ["image_emailservice:production"]
   }
 }
 

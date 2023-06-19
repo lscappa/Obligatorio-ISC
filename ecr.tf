@@ -23,15 +23,27 @@ resource "aws_ecr_repository" "repositorio_imagenes" {
 #     #image_digest    = docker_image.centos.digest
 # }
 
-resource "null_resource" "push_image" {
-  depends_on = [docker_image.image_emailservice]
+# resource "null_resource" "subir_imagen" {
+#   depends_on = [docker_image.image_emailservice]
 
+#   provisioner "local-exec" {
+#     command = <<-EOT
+#       aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${aws_ecr_repository.repositorio_imagenes.repository_url}
+#       docker tag ${docker_image.image_emailservice.name}:production ${aws_ecr_repository.repositorio_imagenes.repository_url}:${docker_image.image_emailservice.name}
+#       docker push ${aws_ecr_repository.repositorio_imagenes.repository_url}:${docker_image.image_emailservice.name}
+#     EOT
+#     interpreter = ["bash", "-c"]
+#   }
+# }
+
+resource "null_resource" "subir_imagen" {
   provisioner "local-exec" {
-    command = <<-EOT
-      aws ecr get-login-password --region ${var.aws_region} | docker login --username AWS --password-stdin ${aws_ecr_repository.image_repository.repository_url}
-      docker tag ${docker_image.image_emailservice.name} ${aws_ecr_repository.image_repository.repository_url}:${docker_image.image_emailservice.name}
-      docker push ${aws_ecr_repository.image_repository.repository_url}:${docker_image.image_emailservice.name}
+    command = <<EOT
+      aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 844508465648.dkr.ecr.us-east-1.amazonaws.com
+      docker tag image_emailservice:production 844508465648.dkr.ecr.us-east-1.amazonaws.com/image_emailservice:production
+      docker push 844508465648.dkr.ecr.us-east-1.amazonaws.com/image_emailservice:production
     EOT
-    interpreter = ["bash", "-c"]
   }
+  depends_on = [docker_image.image_emailservice]
 }
+
