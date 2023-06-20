@@ -15,10 +15,46 @@
 #     }
 # }
 
+module "adservice" {
+  source = "./Modules/adservice"
+}
+
+module "cartservice" {
+  source = "./Modules/cartservice/src"
+}
+
+module "checkoutservice" {
+  source = "./Modules/checkoutservice"
+}
+
+module "currencyservice" {
+  source = "./Modules/currencyservice"
+}
+
 module "emailservice" {
   source = "./Modules/emailservice"
 }
 
+module "frontend" {
+  source = "./Modules/frontend"
+}
+
+module "loadgenerator" {
+  source = "./Modules/loadgenerator"
+}
+
 module "paymentservice" {
   source = "./Modules/paymentservice"
+}
+
+module "productcatalogservice" {
+  source = "./Modules/productcatalogservice"
+}
+
+module "recommendationservice" {
+  source = "./Modules/recommendationservice"
+}
+
+module "shippingservice" {
+  source = "./Modules/shippingservice"
 }

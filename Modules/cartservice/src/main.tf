@@ -16,7 +16,7 @@ resource "null_resource" "docker_login_aws" {
 resource "docker_image" "image_microservicio" {
   name = "image_${var.name_service}:${var.tag}"
   build {
-    context     = "./Modules/${var.name_service}/"
+    context     = "./Modules/src/${var.name_service}/"
     dockerfile  = "Dockerfile"
   }
 

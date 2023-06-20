@@ -19,10 +19,14 @@ WORKDIR /app
 COPY ["build.gradle", "gradlew", "./"]
 COPY gradle gradle
 RUN chmod +x gradlew
+# Eliminar caracteres de retorno
+RUN sed -i 's/\r$//' gradlew
 RUN ./gradlew downloadRepos
 
 COPY . .
 RUN chmod +x gradlew
+# Eliminar caracteres de retorno
+RUN sed -i 's/\r$//' gradlew
 RUN ./gradlew installDist
 
 FROM openjdk:8-slim

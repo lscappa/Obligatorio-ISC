@@ -7,7 +7,7 @@ variable "region" {
 
 variable "name_service" {
   description = "Variable con nombre del microservicio"
-  default = "emailservice"
+  default = "checkoutservice"
 }
 
 variable "tag" {
