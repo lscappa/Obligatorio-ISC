@@ -1,3 +1,5 @@
+# Configuración de repositorio en AWS ECR, creación de imagen mediante Dockerfile y subida al repositorio creado
+
 # Creo el repositorio de imagenes en AWS ECR
 resource "aws_ecr_repository" "image_emailservice" {
   name = "image_emailservice"
@@ -12,7 +14,7 @@ resource "null_resource" "docker_login_aws" {
 
 # Creación de imagen de Docker para el microservicio emailservice mediante el Dockerfile
 resource "docker_image" "image_emailservice" {
-  name = "image_emailservice"
+  name = "image_emailservice:v1"
   build {
     context    = "./Modules/emailservice/"
     dockerfile  = "Dockerfile"
@@ -20,17 +22,17 @@ resource "docker_image" "image_emailservice" {
 
   # Se etiqueta la imagen para poder enviarla al repositorio
   provisioner "local-exec" {
-    command = "docker tag ${docker_image.image_emailservice.name} ${aws_ecr_repository.image_emailservice.repository_url}"
+    command = "docker tag ${docker_image.image_emailservice.name} ${aws_ecr_repository.image_emailservice.repository_url}:v1"
   }
 
   # Se sube la imagen al repositorio de Amazon ECR
   provisioner "local-exec" {
-    command = "docker push ${aws_ecr_repository.image_emailservice.repository_url}"
+    command = "docker push ${aws_ecr_repository.image_emailservice.repository_url}:v1"
   }
 
   # Se elimina la imagen local para no conservarla localmente después de hacer push
   provisioner "local-exec" {
-    command = "docker rmi ${aws_ecr_repository.image_emailservice.repository_url} && docker rmi image_emailservice"
+    command = "docker rmi ${aws_ecr_repository.image_emailservice.repository_url}:v1 && docker rmi image_emailservice:v1"
   }
 
   # Dependencia de la autenticación en AWS ECR para antes de construir y subir la imagen

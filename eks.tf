@@ -1,12 +1,12 @@
-#Configuración del clúster
+# Configuración del clúster
 
 resource "aws_eks_cluster" "eks-cluster" {
-    name        = "eks-cluster"     #Nombre del clúster
-    version     = "1.27"            #Versión de Kubernetes
+    name        = "eks-cluster"                                 #Nombre del clúster
+    version     = "1.27"                                        #Versión de Kubernetes
     
     role_arn    = "arn:aws:iam::844508465648:role/LabRole"      #Rol de servicio de clúster
 
-    #Red del clúster
+    #Red del clúster asociada a la subred y grupo de seguridad creado
     vpc_config {
         #subnet_ids              = [aws_subnet.services-private-subnet.id, aws_subnet.services-private-subnet-2.id]
         subnet_ids              = ["subnet-0573740c09f6cde3c", "subnet-006b89a4bfc27f51b"]
@@ -24,24 +24,24 @@ resource "aws_eks_cluster" "eks-cluster" {
 }
 
 
-#Configuración del node group
+# Configuración del node group
 
 resource "aws_eks_node_group" "node_group_services" {
-    cluster_name    = aws_eks_cluster.eks-cluster.name              #Nombre del clúster a asociar el node group
-    node_group_name = "node_group_services"                         #Nombre del node group
+    cluster_name    = aws_eks_cluster.eks-cluster.name          #Nombre del clúster a asociar el node group
+    node_group_name = "node_group_services"                     #Nombre del node group
     
-    node_role_arn   = "arn:aws:iam::844508465648:role/LabRole"      #Rol de IAM de nodo
+    node_role_arn   = "arn:aws:iam::844508465648:role/LabRole"  #Rol de IAM de nodo
     
     #Red del node group
     #subnet_ids              = ["aws_subnet.services-private-subnet.id", "aws_subnet.services-private-subnet-2.id"]
     subnet_ids              = ["subnet-0573740c09f6cde3c", "subnet-006b89a4bfc27f51b"]
 
     #Configuración del node group
-    # ami_type       = "AL2_x86_64"               #Tipo de AMI
-    instance_types = ["t2.micro"]               #Tipos de instancias
-    # instance_types = ["t3.large"]               #Tipos de instancias
-    capacity_type  = "ON_DEMAND"                #Tipo de capacidad
-    # disk_size      = 20                         #Tamaño del disco
+    # ami_type       = "AL2_x86_64"                               #Tipo de AMI
+    instance_types = ["t2.micro"]                               #Tipos de instancias
+    # instance_types = ["t3.large"]                               #Tipos de instancias
+    capacity_type  = "ON_DEMAND"                                #Tipo de capacidad
+    # disk_size      = 20                                         #Tamaño del disco
 
 
     #Parámetros para el Auto-scaling group

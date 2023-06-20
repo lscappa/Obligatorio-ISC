@@ -19,6 +19,6 @@ module "emailservice" {
   source = "./Modules/emailservice"
 }
 
-# module "emailservice" {
-#   source = "./Modules/emailservice"
-# }
+module "paymentservice" {
+  source = "./Modules/paymentservice"
+}
