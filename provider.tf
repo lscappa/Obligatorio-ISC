@@ -6,16 +6,3 @@ provider "aws" {
     shared_credentials_files    = ["C:/Users/vale/.aws/credentials"]
     region = var.region         //declarada en variables
 }
-
-# Configuracion Provider Docker
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "3.0.2"
-    }
-  }
-}
-
-provider "docker" {
-}

@@ -20,7 +20,7 @@ module "adservice" {
 }
 
 module "cartservice" {
-  source = "./Modules/cartservice/src"
+  source = "./Modules/cartservice"
 }
 
 module "checkoutservice" {

@@ -44,19 +44,24 @@ diagrama de AWS. El mismo deberá incluir el networking a implementar.
 (tipo de instancia, bloques CIDRs, Firewalling, etc)
 
 ### Servicios de AWS usados
-1. Amazon EC2
-1. Amazon VPC
-1. Amazon EKS
+1. Amazon Elastic Compute Cloud (AWS EC2)
+1. Amazon Virtual Private Cloud (AWS VPC)
+1. Amazon Elastic Container Registry (AWS ECR)
+1. Amazon Elastic Kubernetes Service (AWS EKS)
 ## Referencias
 - Material de Aulas - Implementación de soluciones cloud
 - [Info AWS](https://aws.amazon.com/es/)
 - [Doc AWS](https://docs.aws.amazon.com/)
 - [Doc Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/ec2/?icmpid=docs_homepage_featuredsvcs)
 - [Doc Amazon Virtual Private Cloud](https://docs.aws.amazon.com/vpc/?icmpid=docs_homepage_featuredsvcs)
+- [Doc Amazon Elastic Container Registry](https://docs.aws.amazon.com/ecr/?icmpid=docs_homepage_containers)
 - [Doc Amazon Elastic Kubernetes Service](https://docs.aws.amazon.com/eks/?icmpid=docs_homepage_containers)
 - [Info Terraform](https://registry.terraform.io/)
 - [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [Terraform AWS](https://developer.hashicorp.com/terraform/tutorials/aws-get-started)
+- [Terraform Docker](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)
+- [Terraform Null](https://registry.terraform.io/providers/hashicorp/null/latest/docs)
+- [Terraform Local Module](https://developer.hashicorp.com/terraform/tutorials/modules/module-create)
 
 
 ##Otros estilos a usar
