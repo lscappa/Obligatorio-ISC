@@ -14,3 +14,11 @@
 #         Name = "instance-adservice"
 #     }
 # }
+
+module "emailservice" {
+  source = "./Modules/emailservice"
+}
+
+# module "emailservice" {
+#   source = "./Modules/emailservice"
+# }

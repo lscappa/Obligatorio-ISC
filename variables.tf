@@ -54,3 +54,4 @@ variable "vpc_aws_az-2" {
   description = "Variable para la zona de disponibilidad 2"
   default = "us-east-1b"
 }
+

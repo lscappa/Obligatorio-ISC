@@ -7,6 +7,7 @@ provider "aws" {
     region = var.region         //declarada en variables
 }
 
+# Configuracion Provider Docker
 terraform {
   required_providers {
     docker = {
