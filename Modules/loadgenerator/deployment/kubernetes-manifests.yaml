@@ -36,10 +36,7 @@ spec:
           value: "frontend:80"
       containers:
       - name: main
-        #image: <IMAGE:TAG>
         image: 844508465648.dkr.ecr.us-east-1.amazonaws.com/image_loadgenerator:v1
-        #image: <AWS_ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/<REPOSITORY_NAME>:<IMAGE_TAG>
-        #image: "${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}"
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
