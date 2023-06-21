@@ -103,7 +103,7 @@ diagrama de AWS. El mismo deberá incluir el networking a implementar.
 
 5. Aplicación de los manifiestos de Kubernetes al clúster EKS:
    - Se ejecutan comandos locales usando el provisionador `local-exec` para realizar acciones adicionales, para actualizar la conexión local para permitir la comunicación con el clúster de EKS y aplicación de los manifiestos de Kubernetes al clúster creado en AWS EKS para la creación de los recursos definidos para los microservicios.
-   - Código de microservicio emailservice como ejemplo: [emailservice-repo-image](./Modules/emailservice/eks-manifest.tf)
+   - Código de microservicio emailservice como ejemplo: [emailservice-eks-kubernets-manifests](./Modules/emailservice/eks-manifest.tf)
 
 ### Servicios de AWS usados
 1. Amazon Elastic Compute Cloud (AWS EC2)
