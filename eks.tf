@@ -20,8 +20,8 @@ resource "aws_eks_cluster" "eks-cluster" {
     tags = {
         Name = "eks-cluster"
     }
-
 }
+ #${aws_ecr_repository.ecr_repo.repository_url}
 
 
 # Configuración del node group

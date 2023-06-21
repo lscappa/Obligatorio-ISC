@@ -37,6 +37,8 @@ spec:
       containers:
       - name: main
         image: <IMAGE:TAG>
+        #image: <AWS_ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/<REPOSITORY_NAME>:<IMAGE_TAG>
+        #image: "${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}"
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
