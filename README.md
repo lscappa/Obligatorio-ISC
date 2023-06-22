@@ -105,6 +105,15 @@ diagrama de AWS. El mismo deberá incluir el networking a implementar.
    - Se ejecutan comandos locales usando el provisionador `local-exec` para realizar acciones adicionales, para actualizar la conexión local para permitir la comunicación con el clúster de EKS y aplicación de los manifiestos de Kubernetes al clúster creado en AWS EKS para la creación de los recursos definidos para los microservicios.
    - Código de microservicio emailservice como ejemplo: [emailservice-eks-kubernets-manifests](./Modules/emailservice/eks-manifest.tf)
 
+6. Terraform
+   - Se utiliza Terraform, una herramienta de infraestructura como código (IaC), para definir y administrar la infraestructura en AWS y la configuración de Kubernetes en AWS EKS. Describiendo la infraestructura y los recursos deseados en archivos de configuración. 
+   - **Aplicación del despliegue con Terraform:**
+
+    1. Ejecutar comando `terraform init`: Este comando inicializa el directorio de trabajo de Terraform. Descarga los proveedores requeridos (AWS, Docker, y Null) y configura el entorno de ejecución.
+    2. Ejecutar comando `terraform plan`: Este comando muestra una planificación de los cambios que Terraform aplicará en la infraestructura de AWS. Proporciona una visión general de los recursos que se crearán, actualizarán o eliminarán.
+    3. Ejecutar comando `terraform apply`: Este comando aplica los cambios planificados en la infraestructura de AWS. Terraform creará, actualizará o eliminará los recursos según lo definido en los archivos de configuración. 
+    4. Destruir la infraestructura creada en AWS, ejecutando el comando `terraform destroy`. Este comando eliminará todos los recursos administrados por Terraform de acuerdo con la configuración definida.
+
 ### Servicios de AWS usados
 1. Amazon Elastic Compute Cloud (AWS EC2)
 1. Amazon Virtual Private Cloud (AWS VPC)
