@@ -1,4 +1,4 @@
-## Obligatorio Implementación de soluciones cloud
+## Obligatorio Implementación de soluciones Cloud
  **Quinto semestre 2023**
  
  - Laura Carolina Scappa Baz N.º 270452 
@@ -6,12 +6,11 @@
 
 **Repositorio GitHub:** [https://github.com/lscappa/Obligatorio-ISC](https://github.com/lscappa/Obligatorio-ISC)
 
+# Online Boutique
 
 <p align="center">
 <img src="Modules/frontend/static/icons/Hipster_HeroLogoCyan.svg" width="300" alt="Online Boutique" />
 </p>
-
-# Online Boutique
 
 **Online Boutique** es una aplicación de demostración de microservicios nativa de la nube. Online Boutique consta de una aplicación de microservicios de 10 niveles. La aplicación es una aplicación de comercio electrónico basada en la web donde los usuarios pueden buscar artículos, agregarlos al carrito y comprarlos.
 
@@ -41,7 +40,9 @@ microservices](./docs/img/architecture-anterior.png)](./docs/img/architecture-an
 - Un servidor donde se almacenan documentos estáticos
 - Una base de datos clave-valor
 - Servicios de Cache
+
 ## Detalles de la implementación
+
 ### Arquitectura a desplegar en Cloud (Micro-servicios)
 
 **Online Boutique** está compuesto por 11 microservicios escritos en diferentes idiomas que se comunican entre sí a través de gRPC. 
@@ -122,6 +123,7 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
 1. Amazon Virtual Private Cloud (AWS VPC)
 1. Amazon Elastic Container Registry (AWS ECR)
 1. Amazon Elastic Kubernetes Service (AWS EKS)
+
 ## Referencias
 - Material de Aulas - Implementación de soluciones cloud
 - [Info AWS](https://aws.amazon.com/es/)
