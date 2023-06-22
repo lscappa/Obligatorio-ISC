@@ -14,6 +14,7 @@ resource "null_resource" "docker_login_aws" {
 
 # Creación de imagen de Docker para el microservicio paymentservice mediante el Dockerfile
 resource "docker_image" "image_microservicio" {
+  count = var.ejecucion_docker_image ? 1 : 0
   name = "image_${var.name_service}:${var.tag}"
   build {
     context     = "./Modules/${var.name_service}/"
@@ -22,7 +23,7 @@ resource "docker_image" "image_microservicio" {
 
   # Se etiqueta la imagen para poder enviarla al repositorio
   provisioner "local-exec" {
-    command = "docker tag ${docker_image.image_microservicio.name} ${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}"
+    command = "docker tag ${docker_image.image_microservicio[count.index].name} ${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}"
   }
 
   # Se sube la imagen al repositorio de Amazon ECR

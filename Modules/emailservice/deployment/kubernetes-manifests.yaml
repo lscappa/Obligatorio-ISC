@@ -16,11 +16,11 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
+        image: IMAGE_TAG
         #variables: ${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}
-        #image: IMAGE_TAG
         #image: 844508465648.dkr.ecr.us-east-1.amazonaws.com/image_emailservice:v1
         #image: <AWS_ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/<REPOSITORY_NAME>:<IMAGE_TAG>
-        image: ${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}
+        #image: ${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}
         ports:
         - containerPort: 8080
         env:
