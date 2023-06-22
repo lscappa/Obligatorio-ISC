@@ -88,32 +88,36 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
    - Se permite todo el tráfico de salida.
    - Código: [security-groups](security-groups.tf)
 
-3. Configuración del repositorio de imágenes en AWS ECR:
+3. Configuración general
+   - Se crean módulos, en los cuales cada uno representa un microservicio que es llamadado desde el archivo [main](main.tf) principal con los recursos necesarios para su configuraciones y despliegue.
+   - Parametrización de los valores utilizados en la configuración generales o especificas para cada módulo mediante el uso de [variables de entrada](variables.tf) y [variables de salida](output.tf).
+
+4. Configuración del repositorio de imágenes en AWS ECR:
    - Se crea un repositorio de imágenes en AWS ECR (`aws_ecr_repository.ecr_repo`) para cada microservicio, con su respectivo nombre.
    - Se establece una conexión con AWS ECR mediante la autenticación (`null_resource.docker_login_aws`).
    - Se crea una imagen de Docker para cada microservicio utilizando un Dockerfile (`docker_image.image_microservicio`), con su respectivo nombre.
    - Se etiqueta cada imagen de Docker y se sube al repositorio de Amazon ECR previamente creado.
    - Se elimina la imagen local después de hacer push al repositorio.
-   - Código de microservicio emailservice como ejemplo: [emailservice-repo-image](./Modules/emailservice/main.tf)
+   - Código de microservicio emailservice como ejemplo: [emailservice--repo-docker-image-ecr](./Modules/emailservice/main.tf)
 
-4. Configuración del clúster EKS y el grupo de nodos:
+5. Configuración del clúster EKS y el grupo de nodos:
    - Se crea un clúster EKS (`aws_eks_cluster.eks-cluster`).
    - Se especifica el rol de IAM del clúster y se configura la red del clúster con las subredes y el grupo de seguridad previamente creados.
    - Se crea un grupo de nodos (`aws_eks_node_group.node_group_services`) asociado al clúster EKS.
    - Se especifica el nombre del clúster y el nombre del grupo de nodos, y se configura la red del grupo de nodos con las subredes previamente creadas.
    - Se especifican los tipos de instancias, el tipo de capacidad y las configuraciones de escalado automático.
-   - Código: [eks](eks.tf)
+   - Código: [eks-cluster](eks.tf)
 
-5. Aplicación de los manifiestos de Kubernetes al clúster EKS:
+6. Aplicación de los manifiestos de Kubernetes al clúster EKS:
    - Se ejecutan comandos locales usando el provisionador `local-exec` para realizar acciones adicionales, para actualizar la conexión local para permitir la comunicación con el clúster de EKS y aplicación de los manifiestos de Kubernetes al clúster creado en AWS EKS para la creación de los recursos definidos para los microservicios.
-   - Código de microservicio emailservice como ejemplo: [emailservice-eks-kubernets-manifests](./Modules/emailservice/eks-manifest.tf)
+   - Código de microservicio emailservice como ejemplo: [emailservice--kubernets-manifests-eks](./Modules/emailservice/eks-manifest.tf)
 
-6. Terraform
+7. Terraform
    - Se utiliza Terraform, una herramienta de infraestructura como código (IaC), para definir y administrar la infraestructura en AWS y la configuración de Kubernetes en AWS EKS. Describiendo la infraestructura y los recursos deseados en archivos de configuración. 
    
    - **Aplicación del despliegue con Terraform:**
 
-    1. Ejecutar comando `terraform init`: Este comando inicializa el directorio de trabajo de Terraform. Descarga los proveedores requeridos (AWS, Docker, y Null) y configura el entorno de ejecución.
+    1. Ejecutar comando `terraform init`: Este comando inicializa el directorio de trabajo de Terraform. Descarga los proveedores [provider](provider.tf) requeridos (AWS, Docker, y Null) y configura el entorno de ejecución.
     2. Ejecutar comando `terraform plan`: Este comando muestra una planificación de los cambios que Terraform aplicará en la infraestructura de AWS. Proporciona una visión general de los recursos que se crearán, actualizarán o eliminarán.
     3. Ejecutar comando `terraform apply`: Este comando aplica los cambios planificados en la infraestructura de AWS. Terraform creará, actualizará o eliminará los recursos según lo definido en los archivos de configuración. 
     4. Destruir la infraestructura creada en AWS, ejecutando el comando `terraform destroy`. Este comando eliminará todos los recursos administrados por Terraform de acuerdo con la configuración definida.
