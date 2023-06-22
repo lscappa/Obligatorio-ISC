@@ -98,7 +98,7 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
    - Se crea una imagen de Docker para cada microservicio utilizando un Dockerfile (`docker_image.image_microservicio`), con su respectivo nombre.
    - Se etiqueta cada imagen de Docker y se sube al repositorio de Amazon ECR previamente creado.
    - Se elimina la imagen local después de hacer push al repositorio.
-   - Código de microservicio emailservice como ejemplo: [emailservice--repo-docker-image-ecr](./Modules/emailservice/main.tf)
+   - Código de microservicio emailservice como ejemplo: [emailservice--repo-docker-image-ecr.tf](./Modules/emailservice/repo-docker-image-ecr.tf)
 
 5. Configuración del clúster EKS y el grupo de nodos:
    - Se crea un clúster EKS (`aws_eks_cluster.eks-cluster`).
@@ -110,7 +110,7 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
 
 6. Aplicación de los manifiestos de Kubernetes al clúster EKS:
    - Se ejecutan comandos locales usando el provisionador `local-exec` para realizar acciones adicionales, para actualizar la conexión local para permitir la comunicación con el clúster de EKS y aplicación de los manifiestos de Kubernetes al clúster creado en AWS EKS para la creación de los recursos definidos para los microservicios.
-   - Código de microservicio emailservice como ejemplo: [emailservice--kubernets-manifests-eks](./Modules/emailservice/eks-manifest.tf)
+   - Código de microservicio emailservice como ejemplo: [emailservice--kubernetes-manifests-eks.tf](./Modules/emailservice/kubernetes-manifests-eks.tf)
 
 7. Terraform
    - Se utiliza Terraform, una herramienta de infraestructura como código (IaC), para definir y administrar la infraestructura en AWS y la configuración de Kubernetes en AWS EKS. Describiendo la infraestructura y los recursos deseados en archivos de configuración. 

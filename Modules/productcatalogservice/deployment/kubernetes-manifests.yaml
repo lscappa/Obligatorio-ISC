@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: <IMAGE:TAG>
+        image: "${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}"
         ports:
         - containerPort: 3550
         env:
