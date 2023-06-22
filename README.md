@@ -72,6 +72,8 @@ diagrama de AWS. El mismo deberá incluir el networking a implementar.
 ### Datos de la infraestructura 
 (tipo de instancia, bloques CIDRs, Firewalling, etc)
 
+Se realiza mediante Terraform el despliegue de la infraestructura de microservicios en los servicios de AWS.
+
 1. Configuración de AWS VPC, subnet, gateway y route table:
    - Se crea un VPC (`aws_vpc.services-vpc`) con un bloque CIDR (`cidr_block`) y se habilita el soporte DNS y los nombres de host DNS.
    - Se crean dos subredes privadas (`aws_subnet.services-private-subnet` y `aws_subnet.services-private-subnet-2`) asociadas al VPC en diferentes zonas de disponibilidad, con bloques CIDR específicos (`cidr_block`).
@@ -107,6 +109,7 @@ diagrama de AWS. El mismo deberá incluir el networking a implementar.
 
 6. Terraform
    - Se utiliza Terraform, una herramienta de infraestructura como código (IaC), para definir y administrar la infraestructura en AWS y la configuración de Kubernetes en AWS EKS. Describiendo la infraestructura y los recursos deseados en archivos de configuración. 
+   
    - **Aplicación del despliegue con Terraform:**
 
     1. Ejecutar comando `terraform init`: Este comando inicializa el directorio de trabajo de Terraform. Descarga los proveedores requeridos (AWS, Docker, y Null) y configura el entorno de ejecución.
