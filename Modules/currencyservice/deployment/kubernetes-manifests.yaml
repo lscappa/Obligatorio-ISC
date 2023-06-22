@@ -16,7 +16,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: <IMAGE:TAG>
+        #image: <IMAGE:TAG>
+        image: ${844508465648.dkr.ecr.us-east-1.amazonaws.com/image_currencyservice:v1}
         ports:
         - name: grpc
           containerPort: 7000
@@ -55,3 +56,4 @@ spec:
   - name: grpc
     port: 7000
     targetPort: 7000
+

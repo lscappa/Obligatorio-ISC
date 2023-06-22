@@ -15,6 +15,11 @@ variable "tag" {
   default = "v1"
 }
 
+# variable "ecr_repository_url" {
+#   description = "URL del repositorio ECR"
+#   default = "image_currencyservice"
+# }
+
 variable "ejecucion_docker_image" {
   description = "Variables relacionadas con la construcción de la imagen de Docker"
   type = bool
