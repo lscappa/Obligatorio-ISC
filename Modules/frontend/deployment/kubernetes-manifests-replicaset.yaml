@@ -1,9 +1,12 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+## Se cambia en los manifiestos kind: Deployment a kind: ReplicaSet y se agrega replicas:2 para crear el pod en cada nodo, si se cae uno hay disponibilidad igual
+kind: ReplicaSet
 metadata:
   name: frontend
 spec:
+  ## Se modifica a 2 réplicas
+  replicas: 2
   selector:
     matchLabels:
       app: frontend
@@ -70,29 +73,3 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend
-spec:
-  type: ClusterIP
-  selector:
-    app: frontend
-  ports:
-  - name: http
-    port: 80
-    targetPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-external
-spec:
-  type: LoadBalancer
-  selector:
-    app: frontend
-  ports:
-  - name: http
-    port: 80
-    targetPort: 8080

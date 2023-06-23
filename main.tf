@@ -43,3 +43,7 @@ module "recommendationservice" {
 module "shippingservice" {
   source = "./Modules/shippingservice"
 }
+
+module "redis" {
+  source = "./Modules/redis"
+}

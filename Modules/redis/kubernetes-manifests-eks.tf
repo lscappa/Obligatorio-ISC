@@ -10,9 +10,6 @@ resource "null_resource" "update_kubeconfig_aws" {
 
 data "kubectl_path_documents" "kubernetes-manifests" {
     pattern = "./Modules/${var.name_service}/deployment/*.yaml"
-    vars = {
-        docker_image_ecr = "${aws_ecr_repository.ecr_repo.repository_url}:${var.tag}"
-    }
     
     depends_on = [null_resource.update_kubeconfig_aws]
 }

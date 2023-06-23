@@ -1,13 +1,15 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+## Se cambia en los manifiestos kind: Deployment a kind: ReplicaSet y se agrega replicas:2 para crear el pod en cada nodo, si se cae uno hay disponibilidad igual
+kind: ReplicaSet
 metadata:
   name: loadgenerator
 spec:
+  ## Se modifica a 2 réplicas
+  replicas: 1
   selector:
     matchLabels:
       app: loadgenerator
-  replicas: 1
   template:
     metadata:
       labels:

@@ -1,9 +1,12 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+## Se cambia en los manifiestos kind: Deployment a kind: ReplicaSet y se agrega replicas:2 para crear el pod en cada nodo, si se cae uno hay disponibilidad igual
+kind: ReplicaSet
 metadata:
   name: cartservice
 spec:
+  ## Se modifica a 2 réplicas
+  replicas: 2
   selector:
     matchLabels:
       app: cartservice
@@ -38,16 +41,3 @@ spec:
           periodSeconds: 10
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:7070", "-rpc-timeout=5s"]
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: cartservice
-spec:
-  type: ClusterIP
-  selector:
-    app: cartservice
-  ports:
-  - name: grpc
-    port: 7070
-    targetPort: 7070

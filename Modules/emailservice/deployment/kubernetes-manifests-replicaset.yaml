@@ -1,16 +1,19 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+## Se cambia en los manifiestos kind: Deployment a kind: ReplicaSet y se agrega replicas:2 para crear el pod en cada nodo, si se cae uno hay disponibilidad igual
+kind: ReplicaSet
 metadata:
-  name: currencyservice
+  name: emailservice
 spec:
+  ## Se modifica a 2 réplicas
+  replicas: 2
   selector:
     matchLabels:
-      app: currencyservice
+      app: emailservice
   template:
     metadata:
       labels:
-        app: currencyservice
+        app: emailservice
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -18,23 +21,22 @@ spec:
       - name: server
         image: ${docker_image_ecr}
         ports:
-        - name: grpc
-          containerPort: 7000
+        - containerPort: 8080
         env:
         - name: PORT
-          value: "7000"
+          value: "8080"
         - name: DISABLE_TRACING
           value: "1"
         - name: DISABLE_PROFILER
           value: "1"
-        - name: DISABLE_DEBUGGER
-          value: "1"
         readinessProbe:
+          periodSeconds: 5
           exec:
-            command: ["/bin/grpc_health_probe", "-addr=:7000"]
+            command: ["/bin/grpc_health_probe", "-addr=:8080"]
         livenessProbe:
+          periodSeconds: 5
           exec:
-            command: ["/bin/grpc_health_probe", "-addr=:7000"]
+            command: ["/bin/grpc_health_probe", "-addr=:8080"]
         resources:
           requests:
             cpu: 100m
@@ -42,17 +44,3 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: currencyservice
-spec:
-  type: ClusterIP
-  selector:
-    app: currencyservice
-  ports:
-  - name: grpc
-    port: 7000
-    targetPort: 7000
-

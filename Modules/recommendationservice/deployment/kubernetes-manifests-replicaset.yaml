@@ -1,9 +1,12 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+## Se cambia en los manifiestos kind: Deployment a kind: ReplicaSet y se agrega replicas:2 para crear el pod en cada nodo, si se cae uno hay disponibilidad igual
+kind: ReplicaSet
 metadata:
   name: recommendationservice
 spec:
+  ## Se modifica a 2 réplicaskind: ReplicaSet
+  replicas: 2
   selector:
     matchLabels:
       app: recommendationservice
@@ -45,16 +48,3 @@ spec:
           limits:
             cpu: 200m
             memory: 450Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: recommendationservice
-spec:
-  type: ClusterIP
-  selector:
-    app: recommendationservice
-  ports:
-  - name: grpc
-    port: 8080
-    targetPort: 8080

@@ -1,9 +1,12 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+## Se cambia en los manifiestos kind: Deployment a kind: ReplicaSet y se agrega replicas:2 para crear el pod en cada nodo, si se cae uno hay disponibilidad igual
+kind: ReplicaSet
 metadata:
   name: redis-cart
 spec:
+  ## Se modifica a 2 réplicaskind: ReplicaSet
+  replicas: 2
   selector:
     matchLabels:
       app: redis-cart
@@ -38,16 +41,3 @@ spec:
       volumes:
       - name: redis-data
         emptyDir: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: redis-cart
-spec:
-  type: ClusterIP
-  selector:
-    app: redis-cart
-  ports:
-  - name: redis
-    port: 6379
-    targetPort: 6379
