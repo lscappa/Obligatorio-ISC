@@ -4,7 +4,8 @@ resource "aws_eks_cluster" "eks-cluster" {
     name        = "eks-cluster"                                 #Nombre del clúster
     version     = "1.27"                                        #Versión de Kubernetes
     
-    role_arn    = "arn:aws:iam::844508465648:role/LabRole"      #Rol de servicio de clúster
+    # role_arn    = "arn:aws:iam::844508465648:role/LabRole"      #Rol de servicio de clúster
+    role_arn    = data.aws_iam_role.current.arn                 #Rol de servicio de clúster
 
     #Red del clúster asociada a la subred y grupo de seguridad creado
     vpc_config {
@@ -30,7 +31,8 @@ resource "aws_eks_node_group" "node_group_services" {
     cluster_name    = aws_eks_cluster.eks-cluster.name          #Nombre del clúster a asociar el node group
     node_group_name = "node_group_services"                     #Nombre del node group
     
-    node_role_arn   = "arn:aws:iam::844508465648:role/LabRole"  #Rol de IAM de nodo
+    # node_role_arn   = "arn:aws:iam::844508465648:role/LabRole"  #Rol de IAM de nodo
+    node_role_arn   = data.aws_iam_role.current.arn             #Rol de IAM de nodo
     
     #Red del node group
     #subnet_ids              = ["aws_subnet.services-private-subnet.id", "aws_subnet.services-private-subnet-2.id"]

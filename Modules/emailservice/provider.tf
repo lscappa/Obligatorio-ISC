@@ -1,12 +1,14 @@
-# Configuracion Provider Docker
+# Configuracion AWS Provider, Docker Provider, Kubectl Provider
 terraform {
   required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+    }
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
     }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+    }  
   }
-}
-
-provider "docker" {
 }

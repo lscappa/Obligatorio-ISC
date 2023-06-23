@@ -17,7 +17,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: 844508465648.dkr.ecr.us-east-1.amazonaws.com/image_frontend:v1
+          image: ${docker_image_ecr}
           ports:
           - containerPort: 8080
           readinessProbe:

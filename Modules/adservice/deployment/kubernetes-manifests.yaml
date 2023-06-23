@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: image_adservice:1.0
+        image: ${docker_image_ecr}
         ports:
         - containerPort: 9555
         env:

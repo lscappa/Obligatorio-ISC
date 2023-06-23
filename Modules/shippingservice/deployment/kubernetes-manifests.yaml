@@ -15,7 +15,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: server
-        image: <IMAGE:TAG>
+        image: ${docker_image_ecr}
         ports:
         - containerPort: 50051
         env:

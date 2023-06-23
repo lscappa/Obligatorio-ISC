@@ -36,7 +36,7 @@ spec:
           value: "frontend:80"
       containers:
       - name: main
-        image: 844508465648.dkr.ecr.us-east-1.amazonaws.com/image_loadgenerator:v1
+        image: ${docker_image_ecr}
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"

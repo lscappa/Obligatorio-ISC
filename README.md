@@ -140,6 +140,7 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
 - [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [Terraform AWS](https://developer.hashicorp.com/terraform/tutorials/aws-get-started)
 - [Terraform Docker](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)
+- [Terraform Kubectl ](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs)
 - [Terraform Null](https://registry.terraform.io/providers/hashicorp/null/latest/docs)
 - [Terraform Local Module](https://developer.hashicorp.com/terraform/tutorials/modules/module-create)
 

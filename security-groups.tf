@@ -1,6 +1,6 @@
 # Configuracion AWS Security Group
 
-# Se configura el grupoo de seguridad asociado al VPC con las reglas de entrada y salida para los puertos y protocolos correspondientes
+# Se configura el grupo de seguridad asociado al VPC con las reglas de entrada y salida para los puertos y protocolos correspondientes
 resource "aws_security_group" "services-sg" {
   name   = "services-sg"
   vpc_id = aws_vpc.services-vpc.id
