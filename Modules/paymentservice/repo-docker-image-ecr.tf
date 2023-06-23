@@ -12,7 +12,7 @@ resource "null_resource" "docker_login_aws" {
   }
 }
 
-# Creación de imagen de Docker para el microservicio paymentservice mediante el Dockerfile
+# Creación de imagen de Docker para el microservicio mediante el Dockerfile
 resource "docker_image" "image_microservicio" {
   count = var.ejecucion_docker_image ? 1 : 0
   name = "image_${var.name_service}:${var.tag}"
