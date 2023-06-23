@@ -32,10 +32,9 @@ resource "aws_eks_node_group" "node_group_services" {
     subnet_ids              = ["${aws_subnet.services-private-subnet.id}", "${aws_subnet.services-private-subnet-2.id}"]
     
     #Configuración del node group
-    # ami_type       = "AL2_x86_64"                               #Tipo de AMI
-    instance_types = ["t2.micro"]                               #Tipos de instancias
-    # instance_types = ["t3.large"]                               #Tipos de instancias
-    capacity_type  = "ON_DEMAND"                                #Tipo de capacidad
+    # ami_type       = "AL2_x86_64"                          #Tipo de AMI
+    instance_types = ["${var.instance_type}"]                   #Tipos de instancias para la cantidad de pods necesarios a levantar con la cantidad max de ip
+    # capacity_type  = "ON_DEMAND"                                #Tipo de capacidad
     # disk_size      = 20                                         #Tamaño del disco
 
 
@@ -52,27 +51,3 @@ resource "aws_eks_node_group" "node_group_services" {
     }
 
 }
-
-# resource "aws_eks_node_group" "my_node_group_2" {
-#     cluster_name    = aws_eks_cluster.eks-cluster-pruebi.name
-#     node_group_name = "my_node_group_2"
-    
-#     node_role_arn   = "arn:aws:iam::397031304952:role/LabRole"
-    
-#     subnet_ids      = ["subnet-0c4edfdfd5d2bec31", "subnet-09141a1130df26118"]
-
-#     scaling_config {
-#         desired_size = 2
-#         min_size     = 1
-#         max_size     = 3
-#     }
-
-#     tags = {
-#         Name = "my_node_group_2"
-#     }
-
-#     # ami_type       = "AL2_x86_64"
-#     instance_types = ["t2.micro"]
-#     # capacity_type  = "ON_DEMAND"
-#     # disk_size      = 20
-# }
