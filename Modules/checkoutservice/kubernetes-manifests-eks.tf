@@ -4,10 +4,11 @@ resource "null_resource" "update_kubeconfig_aws" {
       always_run = "${timestamp()}"
     }
 
-    depends_on = [var.name-eks-cluster]
+    #Para ejecutar despues de la creación del cluster y los nodos
+    depends_on = [var.eks-cluster-node-group]
 
     provisioner "local-exec" {
-      command = "aws eks update-kubeconfig --region ${var.region} --name eks-cluster && sleep 60"  # para que se ejecute al minuto de crear los nodos, ya que el cluster demora como 10 minutos
+      command = "aws eks update-kubeconfig --region ${var.region} --name eks-cluster"
     }
     
 }

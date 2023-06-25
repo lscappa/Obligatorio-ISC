@@ -2,60 +2,60 @@
 
 module "adservice" {
   source = "./Modules/adservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "cartservice" {
   source = "./Modules/cartservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "checkoutservice" {
   source = "./Modules/checkoutservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "currencyservice" {
   source = "./Modules/currencyservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "emailservice" {
   source = "./Modules/emailservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "frontend" {
   source = "./Modules/frontend"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "loadgenerator" {
   source = "./Modules/loadgenerator"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "paymentservice" {
   source = "./Modules/paymentservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "productcatalogservice" {
   source = "./Modules/productcatalogservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "recommendationservice" {
   source = "./Modules/recommendationservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "shippingservice" {
   source = "./Modules/shippingservice"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }
 
 module "redis" {
   source = "./Modules/redis"
-  name-eks-cluster = aws_eks_cluster.eks-cluster
+  eks-cluster-node-group = aws_eks_node_group.node_group_services
 }

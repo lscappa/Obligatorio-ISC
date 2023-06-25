@@ -3,9 +3,14 @@ resource "null_resource" "update_kubeconfig_aws" {
       # Función de marca de tiempo para el local-exec
       always_run = "${timestamp()}"
     }
+
+    #Para ejecutar despues de la creación del cluster y los nodos
+    depends_on = [var.eks-cluster-node-group]
+
     provisioner "local-exec" {
       command = "aws eks update-kubeconfig --region ${var.region} --name eks-cluster"
     }
+    
 }
 
 data "kubectl_path_documents" "kubernetes-manifests" {
