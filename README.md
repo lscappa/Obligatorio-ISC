@@ -27,8 +27,7 @@ Se ha contratado a la consultora BitBeat para modernizar y desplegar la arquitec
 Una célula de desarrollo trabajó en la implementación del e-commerce basado en una arquitectura de microservicios para correr sobre containers cuyo ciclo de integración continua ya se encuentra configurado y la solución ya se encuentra disponible para desplegar por parte del equipo de DevOps.
 
 ## Arquitectura anterior (Legacy)
-[![Architecture of
-microservices](./docs/img/architecture-anterior.png)](./docs/img/architecture-anterior.png)
+[![Arquitectura anterior](./docs/img/architecture-anterior.png)](./docs/img/architecture-anterior.png)
 
 ## Descripción de la Arquitectura migrada
 - Un RP para publicar la aplicación
@@ -51,8 +50,8 @@ microservices](./docs/img/architecture-anterior.png)](./docs/img/architecture-an
 microservices](./docs/img/architecture-diagram.png)](./docs/img/architecture-diagram.png)
 
 ### Diagrama de arquitectura completo
-Poner imagen del diagrama de arquitectura con las fuentes e iconografía típicos de un
-diagrama de AWS. El mismo deberá incluir el networking a implementar.
+
+[![Diagrama de arquitectura completo](./docs/img/Diagrama-de-arquitectura-completo.png)](./docs/img/Diagrama-de-arquitectura-completo.png)
 
 ### Descripción de los servicios
 
@@ -71,7 +70,6 @@ diagrama de AWS. El mismo deberá incluir el networking a implementar.
 | [loadgenerator](./Modules/loadgenerator)                 | Python/Locust | Envía solicitudes continuamente que imitan flujos de compras de usuarios realistas a la interfaz.                                              |
 
 ### Datos de la infraestructura 
-(tipo de instancia, bloques CIDRs, Firewalling, etc)
 
 Se realiza mediante Terraform el despliegue de la infraestructura de microservicios en los servicios de AWS.
 
@@ -90,7 +88,7 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
 
 3. Configuración general
    - Se crean módulos, en los cuales cada uno representa un microservicio que es llamadado desde el archivo [main](main.tf) principal con los recursos necesarios para su configuraciones y despliegue.
-   - Parametrización de los valores utilizados en la configuración generales o especificas para cada módulo mediante el uso de [variables de entrada](variables.tf) y [variables de salida](output.tf).
+   - Parametrización de los valores utilizados en la configuración generales o especificas para cada módulo mediante el uso de [variables de entrada](variables.tf), [variables de salida](output.tf) y [consultas](data.tf).
 
 4. Configuración del repositorio de imágenes en AWS ECR:
    - Se crea un repositorio de imágenes en AWS ECR (`aws_ecr_repository.ecr_repo`) para cada microservicio, con su respectivo nombre.
@@ -110,6 +108,8 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
 
 6. Aplicación de los manifiestos de Kubernetes al clúster EKS:
    - Se ejecutan comandos locales usando el provisionador `local-exec` para realizar acciones adicionales, para actualizar la conexión local para permitir la comunicación con el clúster de EKS y aplicación de los manifiestos de Kubernetes al clúster creado en AWS EKS para la creación de los recursos definidos para los microservicios.
+   - Se pasa a los manifiestos la url con la imagen de Docker en el repositorio de Amazon ECR previamente creado.
+   - Se ejecuta con kubectl los manifiestos para la implementación. 
    - Código de microservicio emailservice como ejemplo: [emailservice--kubernetes-manifests-eks.tf](./Modules/emailservice/kubernetes-manifests-eks.tf)
 
 7. Terraform
@@ -117,7 +117,7 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
    
    - **Aplicación del despliegue con Terraform:**
 
-    1. Ejecutar comando `terraform init`: Este comando inicializa el directorio de trabajo de Terraform. Descarga los proveedores [provider](provider.tf) requeridos (AWS, Docker, y Null) y configura el entorno de ejecución.
+    1. Ejecutar comando `terraform init`: Este comando inicializa el directorio de trabajo de Terraform. Descarga los proveedores [provider](provider.tf) requeridos (AWS, Docker, Kubectl y Null) y configura el entorno de ejecución.
     2. Ejecutar comando `terraform plan`: Este comando muestra una planificación de los cambios que Terraform aplicará en la infraestructura de AWS. Proporciona una visión general de los recursos que se crearán, actualizarán o eliminarán.
     3. Ejecutar comando `terraform apply`: Este comando aplica los cambios planificados en la infraestructura de AWS. Terraform creará, actualizará o eliminará los recursos según lo definido en los archivos de configuración. 
     4. Destruir la infraestructura creada en AWS, ejecutando el comando `terraform destroy`. Este comando eliminará todos los recursos administrados por Terraform de acuerdo con la configuración definida.
@@ -136,6 +136,7 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
 - [Doc Amazon Virtual Private Cloud](https://docs.aws.amazon.com/vpc/?icmpid=docs_homepage_featuredsvcs)
 - [Doc Amazon Elastic Container Registry](https://docs.aws.amazon.com/ecr/?icmpid=docs_homepage_containers)
 - [Doc Amazon Elastic Kubernetes Service](https://docs.aws.amazon.com/eks/?icmpid=docs_homepage_containers)
+- [Terraform EKS](https://tf-eks-workshop.workshop.aws/)
 - [Info Terraform](https://registry.terraform.io/)
 - [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [Terraform AWS](https://developer.hashicorp.com/terraform/tutorials/aws-get-started)
@@ -143,16 +144,3 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
 - [Terraform Kubectl ](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs)
 - [Terraform Null](https://registry.terraform.io/providers/hashicorp/null/latest/docs)
 - [Terraform Local Module](https://developer.hashicorp.com/terraform/tutorials/modules/module-create)
-
-
-##Otros estilos a usar
-
-    enter code here
-
-> Blockquote
-
- - List item
-
-1. Lista
-
- - [ ] List item check

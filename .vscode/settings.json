@@ -1,6 +1,5 @@
 {
     "yaml.schemas": {
-        "file:///c%3A/Users/vale/.vscode/extensions/docsmsft.docs-yaml-1.0.0/dist/toc.schema.json": "/toc\\.yml/i",
         "kubernetes://schema/v1%40service": "file:///c%3A/Users/vale/Documents/Obligatorio-ISC/Modules/adservice/deployment/kubernetes-manifests.yaml"
     }
 }

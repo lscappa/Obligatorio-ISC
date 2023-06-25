@@ -8,9 +8,7 @@ terraform {
 }
 
 provider "aws" {
-    # shared_config_files       = ["/home/lali/.aws/config"]
-    # shared_credentials_files  = ["/home/lali/.aws/credentials"]
-    shared_config_files         = ["C:/Users/vale/.aws/config"]
-    shared_credentials_files    = ["C:/Users/vale/.aws/credentials"]
-    region = var.region         //declarada en variables
+    shared_config_files        = [var.shared_config_files]
+    shared_credentials_files   = [var.shared_credentials_files]
+    region = var.region         //declaradas en variables
 }

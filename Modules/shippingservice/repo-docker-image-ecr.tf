@@ -7,6 +7,8 @@ resource "aws_ecr_repository" "ecr_repo" {
 
 # Conexión con AWS ECR mediante autenticación
 resource "null_resource" "docker_login_aws" {
+
+  depends_on = [aws_ecr_repository.ecr_repo]
   provisioner "local-exec" {
     command = "aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${aws_ecr_repository.ecr_repo.repository_url}"
   }

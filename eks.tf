@@ -32,7 +32,7 @@ resource "aws_eks_node_group" "node_group_services" {
     subnet_ids              = ["${aws_subnet.services-private-subnet.id}", "${aws_subnet.services-private-subnet-2.id}"]
     
     #Configuración del node group
-    # ami_type       = "AL2_x86_64"                          #Tipo de AMI
+    # ami_type       = "AL2_x86_64"                               #Tipo de AMI
     instance_types = ["${var.instance_type}"]                   #Tipos de instancias para la cantidad de pods necesarios a levantar con la cantidad max de ip
     # capacity_type  = "ON_DEMAND"                                #Tipo de capacidad
     # disk_size      = 20                                         #Tamaño del disco

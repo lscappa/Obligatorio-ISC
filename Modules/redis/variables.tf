@@ -9,3 +9,6 @@ variable "name_service" {
   description = "Variable con nombre del microservicio"
   default = "redis"
 }
+
+variable "name-eks-cluster" { 
+}

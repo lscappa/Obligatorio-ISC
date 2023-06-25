@@ -20,3 +20,6 @@ variable "ejecucion_docker_image" {
   type = bool
   default = false     #false para evitar la ejecución siempre de los bloques o true para ejecutarlo
 }
+
+variable "name-eks-cluster" { 
+}

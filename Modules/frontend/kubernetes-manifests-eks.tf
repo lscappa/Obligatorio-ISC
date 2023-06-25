@@ -3,9 +3,13 @@ resource "null_resource" "update_kubeconfig_aws" {
       # Función de marca de tiempo para el local-exec
       always_run = "${timestamp()}"
     }
+
+    depends_on = [var.name-eks-cluster]
+
     provisioner "local-exec" {
-      command = "aws eks update-kubeconfig --region ${var.region} --name eks-cluster"
+      command = "aws eks update-kubeconfig --region ${var.region} --name eks-cluster && sleep 60"  # para que se ejecute al minuto de crear los nodos, ya que el cluster demora como 10 minutos
     }
+    
 }
 
 data "kubectl_path_documents" "kubernetes-manifests" {

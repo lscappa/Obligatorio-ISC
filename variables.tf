@@ -1,9 +1,8 @@
 # Variables generales
 
-
 variable "instance_type" {
   description = "Variable para el tipo de instancia del node group"
-  default = "t3.medium"    #max 18 ip para pod o t3.large max 36 ip para pods
+  default = "t3.medium"    #t3.medium max 18 ip para pod o t3.large max 36 ip para pods
   type = string
 }
 
@@ -36,4 +35,15 @@ variable "private_subnet-2" {
 variable "vpc_aws_az-2" {
   description = "Variable para la zona de disponibilidad 2"
   default = "us-east-1b"
+}
+
+## Variables para conexión del AWS Provider
+variable "shared_config_files" {
+  default = "C:/Users/vale/.aws/config"
+  # default = = "/home/lali/.aws/config"
+}
+
+variable "shared_credentials_files" {
+  default = "C:/Users/vale/.aws/credentials"
+  # default = = "/home/lali/.aws/credentials"
 }
