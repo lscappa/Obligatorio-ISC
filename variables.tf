@@ -37,7 +37,7 @@ variable "vpc_aws_az-2" {
   default = "us-east-1b"
 }
 
-## Variables para conexión del AWS Provider
+# Variables para conexión del AWS Provider
 variable "shared_config_files" {
   default = "C:/Users/vale/.aws/config"
   # default = = "/home/lali/.aws/config"

@@ -1,11 +1,11 @@
 ---
 apiVersion: apps/v1
-## Se cambia en los manifiestos kind: Deployment a kind: ReplicaSet y se agrega replicas:2 para crear el pod en cada nodo, si se cae uno hay disponibilidad igual
+# Se cambia en los manifiestos kind: Deployment a kind: ReplicaSet y se agrega replicas:2 para crear el pod en cada nodo, si se cae uno hay disponibilidad igual
 kind: ReplicaSet
 metadata:
   name: currencyservice
 spec:
-  ## Se modifica a 2 réplicas
+  # Se modifica a 2 réplicas
   replicas: 2
   selector:
     matchLabels:

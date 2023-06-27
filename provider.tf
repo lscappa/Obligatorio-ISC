@@ -21,7 +21,6 @@ provider "aws" {
 
 provider "docker" {
   registry_auth {
-    #address  = local.aws_ecr_url
     address  = data.aws_ecr_authorization_token.ecr_auth_token.proxy_endpoint
     username = data.aws_ecr_authorization_token.ecr_auth_token.user_name
     password = data.aws_ecr_authorization_token.ecr_auth_token.password
