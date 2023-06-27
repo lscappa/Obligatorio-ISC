@@ -41,9 +41,11 @@ variable "vpc_aws_az-2" {
 variable "shared_config_files" {
   default = "C:/Users/vale/.aws/config"
   # default = = "/home/lali/.aws/config"
+  # default = "/Users/lscappa/.aws/config"
 }
 
 variable "shared_credentials_files" {
   default = "C:/Users/vale/.aws/credentials"
   # default = = "/home/lali/.aws/credentials"
+  # default = "/Users/lscappa/.aws/credentials"
 }

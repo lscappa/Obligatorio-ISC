@@ -10,5 +10,5 @@ variable "name_service" {
   default = "redis"
 }
 
-variable "eks-cluster-node-group" { 
-}
+# variable "eks-cluster-node-group" { 
+# }
