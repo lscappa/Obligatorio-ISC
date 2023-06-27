@@ -1,5 +1,9 @@
-# # Consultar la identidad actual
-# data "aws_caller_identity" "current" {}
+data "aws_eks_cluster" "eks-cluster" {
+  name = "eks-cluster"
+  depends_on = [var.eks-cluster]
+}
 
-# # Consultar datos del token de autorización de ECR
-# data "aws_ecr_authorization_token" "token" {}
+data "aws_eks_cluster_auth" "eks-cluster" {
+  name = "eks-cluster"
+  depends_on = [var.eks-cluster]
+}
