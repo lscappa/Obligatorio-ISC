@@ -134,9 +134,18 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
     4. Destruir la infraestructura creada en AWS, ejecutando el comando `terraform destroy`. Este comando eliminará todos los recursos administrados por Terraform de acuerdo con la configuración definida.
 
 ### Video con demostración del despliegue
-<iframe src="https://www.veed.io/embed/910b9a09-e649-4d27-96f2-67fed9ac9bae" width="744" height="504" frameborder="0" title="DEPLOY ANDANDO!!!" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+https://github.com/lscappa/Obligatorio-ISC/assets/109998944/4f689ac3-45dd-430c-a7a0-1fdf4c3d4c38
+
+https://github.com/lscappa/Obligatorio-ISC/assets/109998944/3e0f9e98-28e4-412b-9596-3d56c3c9ea3d
+
+[Ver video en velocidad normal](https://fi365-my.sharepoint.com/:v:/g/personal/mc244130_fi365_ort_edu_uy/ES47dpF3fTZAhDVxukGI8fsB8fkUH9Mf47w_Rfdsn40A9A?e=rf6ieQ)
 
 ### Servicios de AWS Ejecutando
+
+https://github.com/lscappa/Obligatorio-ISC/assets/109998944/3d146440-42db-4667-9d71-d8db7911d58a
+
+[Ver video en velocidad normal](https://fi365-my.sharepoint.com/:v:/g/personal/mc244130_fi365_ort_edu_uy/Ec6pFEnjTOROgxBIVvTI4AUBDCtYYPnIthCOpIS9285PYw?e=hfSebG)
 
 ### Servicios de AWS usados
 1. Amazon Elastic Compute Cloud (AWS EC2)
