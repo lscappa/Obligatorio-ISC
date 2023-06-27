@@ -134,6 +134,7 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
     4. Destruir la infraestructura creada en AWS, ejecutando el comando `terraform destroy`. Este comando eliminará todos los recursos administrados por Terraform de acuerdo con la configuración definida.
 
 ### Video con demostración del despliegue
+<iframe src="https://www.veed.io/embed/910b9a09-e649-4d27-96f2-67fed9ac9bae" width="744" height="504" frameborder="0" title="DEPLOY ANDANDO!!!" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 ### Servicios de AWS Ejecutando
 
