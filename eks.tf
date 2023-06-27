@@ -20,6 +20,7 @@ resource "aws_eks_cluster" "eks-cluster" {
     }
 }
 
+
 # Configuración del node group
 
 resource "aws_eks_node_group" "node_group_services" {
@@ -50,4 +51,21 @@ resource "aws_eks_node_group" "node_group_services" {
         Name = "node_group_services"
     }
 
+}
+
+
+# Actualizar archivo local "~/.kube/config"
+
+resource "null_resource" "update_kubeconfig_aws" {
+    triggers = {
+      # Función de marca de tiempo para el local-exec
+      always_run = "${timestamp()}"
+    }
+
+    #Para ejecutar despues de la creación del cluster
+    depends_on = [data.aws_eks_cluster.eks-cluster]
+
+    provisioner "local-exec" {
+      command = "aws eks update-kubeconfig --region ${var.region} --name eks-cluster"
+    }
 }
