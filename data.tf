@@ -7,15 +7,15 @@ data "aws_iam_role" "current" {
 }
 
 ##############################################3
-# data "aws_eks_cluster" "eks-cluster" {
-#   name = "eks-cluster"
-#   depends_on = [var.eks-cluster]
-# }
+data "aws_eks_cluster" "eks-cluster" {
+  name = "eks-cluster"
+  depends_on = [aws_eks_cluster.eks-cluster]
+}
 
-# data "aws_eks_cluster_auth" "eks-cluster" {
-#   name = "eks-cluster"
-#   depends_on = [var.eks-cluster]
-# }
+data "aws_eks_cluster_auth" "eks-cluster" {
+  name = "eks-cluster"
+  depends_on = [aws_eks_cluster.eks-cluster]
+}
 
 # output "consulta-eks" {
 #   value = data.aws_eks_cluster.eks-cluster
