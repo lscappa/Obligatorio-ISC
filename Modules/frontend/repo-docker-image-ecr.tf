@@ -20,6 +20,7 @@ resource "docker_image" "image_microservicio" {
     context    = "./Modules/${var.name_service}/"
     dockerfile  = "Dockerfile"
   }
+  depends_on = [null_resource.docker_login_aws]
 }
 
 # Se sube la imagen al repositorio de Amazon ECR
@@ -27,5 +28,5 @@ resource "docker_registry_image" "subir_image_microservicio" {
   name = "${aws_ecr_repository.ecr_repo.repository_url}"
 
   # Dependencia de la autenticación en AWS ECR para antes de subir la imagen
-  depends_on = [null_resource.docker_login_aws]
+  depends_on = [docker_image.image_microservicio, null_resource.docker_login_aws]
 }
