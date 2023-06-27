@@ -12,7 +12,6 @@ output "Consulta-role_ARN" {
   value = data.aws_iam_role.current.arn
 }
 
-
 output "Consulta-Cluster-EKS" {
   description = "Cluster EKS"
   value = data.aws_eks_cluster.eks-cluster.name
@@ -26,4 +25,8 @@ output "Consulta-Estado-del-Cluster-EKS" {
 output "Punto-de-enlace-del-Cluster" {
   description = "Punto de enlace del servidor de la API (endpoint)"
   value = data.aws_eks_cluster.eks-cluster.endpoint
+}
+
+output "Consulta-url-endpoint-aws-ecr" {
+  value = data.aws_ecr_authorization_token.ecr_auth_token.proxy_endpoint
 }

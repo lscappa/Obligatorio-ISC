@@ -19,6 +19,15 @@ provider "aws" {
     region = var.region         //declaradas en variables
 }
 
+provider "docker" {
+  registry_auth {
+    #address  = local.aws_ecr_url
+    address  = data.aws_ecr_authorization_token.ecr_auth_token.proxy_endpoint
+    username = data.aws_ecr_authorization_token.ecr_auth_token.user_name
+    password = data.aws_ecr_authorization_token.ecr_auth_token.password
+  }
+}
+
 provider "kubectl" {
   host                   = data.aws_eks_cluster.eks-cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks-cluster.certificate_authority[0].data)
