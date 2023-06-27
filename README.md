@@ -143,7 +143,7 @@ https://github.com/lscappa/Obligatorio-ISC/assets/109998944/3e0f9e98-28e4-412b-9
 
 ### Servicios de AWS Ejecutando
 
-https://github.com/lscappa/Obligatorio-ISC/assets/109998944/3d146440-42db-4667-9d71-d8db7911d58a
+https://github.com/lscappa/Obligatorio-ISC/assets/109998944/7014e37c-4905-4319-b2ae-b97b49d933d9
 
 [Ver video en velocidad normal](https://fi365-my.sharepoint.com/:v:/g/personal/mc244130_fi365_ort_edu_uy/Ec6pFEnjTOROgxBIVvTI4AUBDCtYYPnIthCOpIS9285PYw?e=hfSebG)
 
