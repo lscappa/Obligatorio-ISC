@@ -69,6 +69,17 @@ microservices](./docs/img/architecture-diagram.png)](./docs/img/architecture-dia
 | [adservice](./Modules/adservice)                         | Java          | Proporciones de anuncios de texto basados ​​en palabras de contexto dadas.                                                                                   |
 | [loadgenerator](./Modules/loadgenerator)                 | Python/Locust | Envía solicitudes continuamente que imitan flujos de compras de usuarios realistas a la interfaz.                                              |
 
+### Requisitos previos
+- Cuenta de AWS
+- Instalación [AWS Cli](https://docs.aws.amazon.com/es_es/cli/latest/userguide/getting-started-install.html), [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli), [Docker](https://docs.docker.com/get-docker/), [Kubectl](https://kubernetes.io/docs/tasks/tools/).
+- [Configuración](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) de las credenciles de AWS Cli en (`"~/.aws/credentials"`).
+
+      [default]
+      aws_access_key_id = <KEY>
+      aws_secret_access_key = <SECRET>
+      region = <REGION>
+
+
 ### Datos de la infraestructura 
 
 Se realiza mediante Terraform el despliegue de la infraestructura de microservicios en los servicios de AWS.
