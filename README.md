@@ -89,13 +89,13 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
    - Se crean dos subredes privadas (`aws_subnet.services-private-subnet` y `aws_subnet.services-private-subnet-2`) asociadas al VPC en diferentes zonas de disponibilidad, con bloques CIDR específicos (`cidr_block`).
    - Se crea un Internet Gateway (`aws_internet_gateway.services-gw`) y se asocia al VPC.
    - Se configura una tabla de enrutamiento por defecto (`aws_default_route_table.services-route-table`) que tiene una ruta hacia el Internet Gateway.
-   - Código: [network](network.tf)
+   - Código: [network](network.tf).
 
 2. Configuración de AWS Security Group:
    - Se crea un grupo de seguridad (`aws_security_group.services-sg`) asociado al VPC.
    - Se definen reglas de entrada y salida en el grupo de seguridad para permitir el tráfico entrante en los puertos 22 (SSH) y 80 (HTTP) desde cualquier origen (`cidr_blocks`).
    - Se permite todo el tráfico de salida.
-   - Código: [security-groups](security-groups.tf)
+   - Código: [security-groups](security-groups.tf).
 
 3. Configuración general
    - Se crean módulos, en los cuales cada uno representa un microservicio que es llamadado desde el archivo [main](main.tf) principal con los recursos necesarios para su configuraciones y despliegue.
@@ -105,9 +105,8 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
    - Se crea un repositorio de imágenes en AWS ECR (`aws_ecr_repository.ecr_repo`) para cada microservicio, con su respectivo nombre.
    - Se establece una conexión con AWS ECR mediante la autenticación (`null_resource.docker_login_aws`).
    - Se crea una imagen de Docker para cada microservicio utilizando un Dockerfile (`docker_image.image_microservicio`), con su respectivo nombre.
-   - Se etiqueta cada imagen de Docker y se sube al repositorio de Amazon ECR previamente creado.
-   - Se elimina la imagen local después de hacer push al repositorio.
-   - Código de microservicio emailservice como ejemplo: [emailservice--repo-docker-image-ecr.tf](./Modules/emailservice/repo-docker-image-ecr.tf)
+   - Se etiqueta cada imagen de Docker y se sube con el recurso (`docker_registry_image.subir_image_microservicio`) al repositorio de Amazon ECR previamente creado.
+   - Código de microservicio emailservice como ejemplo: [emailservice--repo-docker-image-ecr.tf](./Modules/emailservice/repo-docker-image-ecr.tf), [emailservice--Dockerfile](./Modules/emailservice/Dockerfile). 
 
 5. Configuración del clúster EKS y el grupo de nodos:
    - Se crea un clúster EKS (`aws_eks_cluster.eks-cluster`).
@@ -115,13 +114,14 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
    - Se crea un grupo de nodos (`aws_eks_node_group.node_group_services`) asociado al clúster EKS.
    - Se especifica el nombre del clúster y el nombre del grupo de nodos, y se configura la red del grupo de nodos con las subredes previamente creadas.
    - Se especifican los tipos de instancias, el tipo de capacidad y las configuraciones de escalado automático.
-   - Código: [eks-cluster](eks.tf)
+   - Se actualiza el archivo local para update-kubeconfig (`null_resource.update_kubeconfig_aws`) con el nombre del clusterpara actualizar la conexión local para permitir la comunicación con el clúster de EKS y aplicación de los manifiestos de Kubernetes al clúster creado en AWS EKS para la creación de los recursos definidos para los microservicios.
+   - Código: [eks-cluster](eks.tf).
 
 6. Aplicación de los manifiestos de Kubernetes al clúster EKS:
-   - Se ejecutan comandos locales usando el provisionador `local-exec` para realizar acciones adicionales, para actualizar la conexión local para permitir la comunicación con el clúster de EKS y aplicación de los manifiestos de Kubernetes al clúster creado en AWS EKS para la creación de los recursos definidos para los microservicios.
-   - Se pasa a los manifiestos la url con la imagen de Docker en el repositorio de Amazon ECR previamente creado.
-   - Se ejecuta con kubectl los manifiestos para la implementación. 
-   - Código de microservicio emailservice como ejemplo: [emailservice--kubernetes-manifests-eks.tf](./Modules/emailservice/kubernetes-manifests-eks.tf)
+   - Se pasa a los manifiestos (`kubectl_path_documents.kubernetes-manifests`) la url con la imagen de Docker en el repositorio de Amazon ECR previamente creado.
+   - Se ejecuta con kubectl el recurso (`kubectl_manifest.aplicar_kubernetes_manifests`) para aplicar los manifiestos al clúster EKS. 
+   - Código de microservicio emailservice como ejemplo: [emailservice--kubernetes-manifests-eks.tf](./Modules/emailservice/kubernetes-manifests-eks.tf), [emailservice--deployment-kubernetes-manifests-replicaset.yaml](./Modules/emailservice/deployment/kubernetes-manifests-replicaset.yaml), [emailservice--deployment-kubernetes-manifests-service.yaml](./Modules/emailservice/deployment/kubernetes-manifests-service.yaml).
+
 
 7. Terraform
    - Se utiliza Terraform, una herramienta de infraestructura como código (IaC), para definir y administrar la infraestructura en AWS y la configuración de Kubernetes en AWS EKS. Describiendo la infraestructura y los recursos deseados en archivos de configuración. 
@@ -130,8 +130,12 @@ Se realiza mediante Terraform el despliegue de la infraestructura de microservic
 
     1. Ejecutar comando `terraform init`: Este comando inicializa el directorio de trabajo de Terraform. Descarga los proveedores [provider](provider.tf) requeridos (AWS, Docker, Kubectl y Null) y configura el entorno de ejecución.
     2. Ejecutar comando `terraform plan`: Este comando muestra una planificación de los cambios que Terraform aplicará en la infraestructura de AWS. Proporciona una visión general de los recursos que se crearán, actualizarán o eliminarán.
-    3. Ejecutar comando `terraform apply`: Este comando aplica los cambios planificados en la infraestructura de AWS. Terraform creará, actualizará o eliminará los recursos según lo definido en los archivos de configuración. 
+    3. Ejecutar comando `terraform apply`: Este comando aplica los cambios planificados en la infraestructura de AWS. Terraform creará, actualizará o eliminará los recursos según lo definido en los archivos de configuración. Se deberá confirmar -`yes`- los cambios o `terraform apply -auto-approve`.
     4. Destruir la infraestructura creada en AWS, ejecutando el comando `terraform destroy`. Este comando eliminará todos los recursos administrados por Terraform de acuerdo con la configuración definida.
+
+### Video con demostración del despliegue
+
+### Servicios de AWS Ejecutando
 
 ### Servicios de AWS usados
 1. Amazon Elastic Compute Cloud (AWS EC2)
